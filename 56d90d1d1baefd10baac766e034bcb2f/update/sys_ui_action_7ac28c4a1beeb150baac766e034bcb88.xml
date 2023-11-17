@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name/>
+        <active>true</active>
+        <client>false</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments/>
+        <condition/>
+        <form_action>true</form_action>
+        <form_button>true</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>StampWithAdobe</name>
+        <onclick>x_adosy_as_openStamp()</onclick>
+        <order>100</order>
+        <script><![CDATA[function x_adosy_as_openStamp() {
+
+	g_form.addInfoMessage('x_adosy_as_openStamp');
+	
+	var table = g_form.getTableName(); 
+	var sys_id = g_form.getUniqueValue();
+	var modal = new GlideModal('x_adosy_as_stamp'); // service portal page. Widget is Adobe Acrobat Sign Send for Signature
+	modal.setTitle('Invoice Stamp with Adobe Acrobat Sign');
+	modal.setSize('lg');
+	modal.setBackdropStatic(true);
+	modal.setAutoFullHeight(true);
+	
+	var agreement_name = "BIT Procurement Approval Stamp: " + g_form.getValue('short_description') + " (" + g_form.getValue('number') + ")"; // set subject
+	
+	var templates = [];
+	
+	templates.push('375147791baab150baac766e034bcbeb'); // adobe document template (x_adosy_as_document_template) sysid 
+	
+	var post_submit_link = 'https://www.adobe.com/';
+	
+	g_form.addInfoMessage('modal.renderIframe');
+	
+	//modal.renderIframe('/$sp.do?id=x_adosy_as_send&subject_table=' + table + '&subject_id=' + sys_id);
+	modal.renderIframe('/$sp.do?id=x_adosy_as_stamp&subject_table=' + table + '&subject_id=' + sys_id + '&agreement_name=' + agreement_name + '&templates=' + templates + '&post_submit_link' + post_submit_link);
+	
+	/*
+    // Replace 'your_record_producer_sys_id' with the actual sys_id of your record producer
+    var recordProducerSysId = 'f3a65fb11b2eb150baac766e034bcb26'; // 'your_record_producer_sys_id';
+
+    // Generate the URL for the record producer
+    var recordProducerUrl = '/com.glideapp.servicecatalog_cat_item_view.do?sysparm_id=' + recordProducerSysId;
+
+    // Redirect to the record producer
+    window.location.href = recordProducerUrl;	
+	*/
+}]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>sfarkas</sys_created_by>
+        <sys_created_on>2023-11-17 20:19:17</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>7ac28c4a1beeb150baac766e034bcb88</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>StampWithAdobe</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope>
+        <sys_update_name>sys_ui_action_7ac28c4a1beeb150baac766e034bcb88</sys_update_name>
+        <sys_updated_by>sfarkas</sys_updated_by>
+        <sys_updated_on>2023-11-17 21:43:10</sys_updated_on>
+        <table>x_dosny_bit_procur_bit_procurement_approval_memo_task</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

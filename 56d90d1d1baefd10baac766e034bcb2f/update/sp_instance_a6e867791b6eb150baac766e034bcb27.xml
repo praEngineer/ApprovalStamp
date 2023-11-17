@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">3a2867391b6eb150baac766e034bcb84</sp_column>
+        <sp_widget display_value="BIT Procure Adobe Acr Sign Send for Sign">5ee7d5821b7df1106c1036ef034bcbdd</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>sfarkas</sys_created_by>
+        <sys_created_on>2023-11-17 18:20:29</sys_created_on>
+        <sys_id>a6e867791b6eb150baac766e034bcb27</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope>
+        <sys_update_name>sp_instance_a6e867791b6eb150baac766e034bcb27</sys_update_name>
+        <sys_updated_by>sfarkas</sys_updated_by>
+        <sys_updated_on>2023-11-17 18:20:29</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=a6e867791b6eb150baac766e034bcb27"/>
+</record_update>

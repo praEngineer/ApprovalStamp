@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="95e0d5151beefd10baac766e034bcb23" label="ApprovalMemoStamp PDF storage" max_length="40" name="x_dosny_approvalme_approvalmemostamp_pdf_storage" type="collection">
+        <element label="PDFblob" max_length="40" name="pdfblob" type="string"/>
+        <element label="PDFfileName" max_length="40" name="pdffilename" type="string"/>
+    </element>
+</database>

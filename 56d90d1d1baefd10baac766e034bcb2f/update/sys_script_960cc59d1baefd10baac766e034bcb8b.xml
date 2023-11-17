@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_dosny_bit_procur_bit_procurement_approval_memo_task</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>ApprovalMemoStamp_Add</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+   // Check if the record has a PDF attachment
+   if (current.attachment_list.some(function (attachment) {
+      return attachment.content_type == 'application/pdf';
+   })) {
+		// convert to byte arrays, 
+		// the GlideSysAttachment.getContent method in ServiceNow returns a GlideScriptableInputStream object
+		var originalPDF = GlideSysAttachment.getContent(current.getValue('sys_id'));
+		// merge them, 
+		var mergedPDFContent = AddStamp(originalPDF);
+		// and then save the result
+		attachMergedPDFToRecord(mergedPDFContent);
+   }
+})(current, previous);
+
+function AddStamp(pdf1) {
+	setTimeout(function() {
+		import('https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js');
+		var { PDFDocument } = pdfLib;
+	}, 8000);	
+
+         // Your code to use pdf-lib to merge the PDFs
+   var mergedPdf = PDFDocument.create();
+         // Logic to merge the PDFs
+
+   var pngUrlOfStamp = 'https://nycdsdev1.service-now.com/sys_attachment.do?sys_id=83791d991beefd10baac766e034bcb30&sysparm_this_url=x_dosny_approvalme_approvalmemostamp_pdf_storage.do%3Fsys_id%3D86c455991beefd10baac766e034bcb4d%26sysparm_record_list%3D%26sysparm_record_row%3D2%26sysparm_record_rows%3D2%26sysparm_record_target%3Dx_dosny_approvalme_approvalmemostamp_pdf_storage';
+	
+	// Get the PDF content from the new table
+	var pngRecord = new GlideRecord('x_dosny_bit_procur_bit_procurement_approval_memo_task');
+	if (pngRecord.get('sys_id', '072621dd1b223150baac766e034bcbd2')) {
+	// Attach the PDF to the procurement task record
+	var attachment = new GlideSysAttachment();
+	attachment.write('x_dosny_bit_procur_bit_procurement_approval_memo_task', 'procurement_task_sys_id', 'ApprovalStamp.png', 'image/png', pngRecord.getValue('content'));
+	}
+	
+	var fetchRslt = null;
+	setTimeout(function() {
+		fetchRslt = fetch(pngUrlOfStamp);
+	}, 3000);
+
+	var pngStampBytes = fetchRslt.arrayBuffer();
+	var existingPdfBytes = pdf1.arrayBuffer();
+	var pdfDoc = PDFDocument.load(existingPdfBytes);
+	var pages = pdfDoc.getPages();
+	var howManyPages = pages.length - 1;
+	var lastPage = pages[howManyPages];
+	
+	var pngStamp = pdfDoc.embedPng(pngStampBytes);
+	var pngStampDims = pngStamp.scale(0.5);
+
+	lastPage.drawImage(pngStamp, {
+		x: lastPage.getWidth() / 2 - pngStampDims.width / 2,
+		y: lastPage.getHeight() / 2 - pngStampDims.height / 2 + 250,
+		width: pngStampDims.width,
+		height: pngStampDims.height,
+	});
+	
+	return pages;
+
+}]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>sfarkas</sys_created_by>
+        <sys_created_on>2023-11-15 17:59:14</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>960cc59d1baefd10baac766e034bcb8b</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>ApprovalMemoStamp_Add</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope>
+        <sys_update_name>sys_script_960cc59d1baefd10baac766e034bcb8b</sys_update_name>
+        <sys_updated_by>sfarkas</sys_updated_by>
+        <sys_updated_on>2023-11-15 20:50:41</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=960cc59d1baefd10baac766e034bcb8b"/>
+</record_update>

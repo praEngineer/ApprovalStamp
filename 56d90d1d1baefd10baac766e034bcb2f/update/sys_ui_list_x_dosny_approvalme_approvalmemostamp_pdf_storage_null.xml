@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_dosny_approvalme_approvalmemostamp_pdf_storage" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>pdfblob</element>
+            <list_id display_value="x_dosny_approvalme_approvalmemostamp_pdf_storage" element="NULL" name="x_dosny_approvalme_approvalmemostamp_pdf_storage" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">90c415991beefd10baac766e034bcb4b</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>sfarkas</sys_created_by>
+            <sys_created_on>2023-11-15 18:16:12</sys_created_on>
+            <sys_id>5cc415991beefd10baac766e034bcb4c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sfarkas</sys_updated_by>
+            <sys_updated_on>2023-11-15 18:16:12</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>pdffilename</element>
+            <list_id display_value="x_dosny_approvalme_approvalmemostamp_pdf_storage" element="NULL" name="x_dosny_approvalme_approvalmemostamp_pdf_storage" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">90c415991beefd10baac766e034bcb4b</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>sfarkas</sys_created_by>
+            <sys_created_on>2023-11-15 18:16:12</sys_created_on>
+            <sys_id>14c415991beefd10baac766e034bcb4d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sfarkas</sys_updated_by>
+            <sys_updated_on>2023-11-15 18:16:12</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_dosny_approvalme_approvalmemostamp_pdf_storage</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>sfarkas</sys_created_by>
+            <sys_created_on>2023-11-15 18:16:12</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>90c415991beefd10baac766e034bcb4b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_dosny_approvalme_approvalmemostamp_pdf_storage</sys_name>
+            <sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope>
+            <sys_update_name>sys_ui_list_x_dosny_approvalme_approvalmemostamp_pdf_storage_null</sys_update_name>
+            <sys_updated_by>sfarkas</sys_updated_by>
+            <sys_updated_on>2023-11-15 18:16:12</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

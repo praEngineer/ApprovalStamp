@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+	
+  // Set the default value to the current date
+  document.getElementById('chosenDate').value = getCurrentDate();
+	
+  // Function to format the current date as mm/dd/yyyy
+  function getCurrentDate() {
+    var today = new Date();
+    var month = today.getMonth() + 1; // Months are zero-based
+    var day = today.getDate();
+    var year = today.getFullYear();
+
+    // Format with leading zeros if needed
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+
+    return month + '/' + day + '/' + year;
+  }
+	
+	// Get the current record's sys_id
+  var currentSysId = getCurrentRecordSysId();
+
+  // Function to get the sys_id of the current record
+  function getCurrentRecordSysId() {
+    // Create a new GlideRecord for the x_dosny_bit_procur_bit_procurement_approval_memo_task table
+	/*
+		In this script:
+
+		It uses the GlideRecord API to interact with server-side records.
+		The function is expected to be called in the browser, and it uses g_form.getUniqueValue() to get the unique identifier of the current record from the client-side form context.
+		The query and retrieval logic are performed client-side.	  
+	  */
+    var gr = new GlideRecord('x_dosny_bit_procur_bit_procurement_approval_memo_task');
+
+    // Check if the current record is present in the form
+    if (gr.isValid()) {
+      // Set the query to find the current record on the form
+      gr.addQuery('sys_id', '=', g_form.getUniqueValue());
+
+      // Execute the query
+      gr.query();
+
+      // Check if a record was found
+      if (gr.next()) {
+        // Return the sys_id of the current record
+        return gr.getValue('sys_id');
+      }
+    }
+		return null;
+	}
+	
+	// Assuming you have the sys_id of the current record
+	var currentRecordSysId = currentSysId;
+
+	// Fetch the first attachment for the current record
+	var attachmentSysId = getFirstAttachmentSysId(currentRecordSysId);
+	var attachmentBlob = getAttachmentBlob(attachmentSysId);
+	var attachmentUrl = getAttachmentUrl(attachmentSysId);
+	var attachmentFileName = getAttachmentFileName(attachmentSysId); 
+	
+	// function that takes an attachmentSysId as input 
+	// and returns the corresponding blob
+	/*
+		In this script:
+
+		It uses the GlideRecord API to interact with server-side records.
+		The function is intended to be called from the client side, as it is fetching attachment data based on the attachmentSysId provided.
+		The GlideSysAttachment class and getContent method are part of ServiceNow's client-side Glide API.	
+	*/
+	function getAttachmentBlob(attachmentSysId) {
+		var attachmentGR = new GlideRecord('sys_attachment');
+		if (attachmentGR.get(attachmentSysId)) {
+			var attachment = new GlideSysAttachment();
+			var blob = attachment.getContent(attachmentGR);
+			return blob;
+		}
+		return null;
+	}
+	
+	function getAttachmentFileName(attachmentSysId) {
+		var attachmentGR = new GlideRecord('sys_attachment');
+		if (attachmentGR.get(attachmentSysId)) {
+			var attachment = new GlideSysAttachment(attachmentGR);
+			var fileName = attachment.getFileName();
+			return fileName;
+		}
+		return 'cannot determine attachment file name';
+	}
+	
+	function getAttachmentUrl(attachmentSysId) {
+		// Get the current ServiceNow instance URL
+		var instanceUrl = window.location.origin;
+
+		// Construct the URL for accessing the attachment data
+		var attachmentUrl = instanceUrl + '/sys_attachment.do?sys_id=' + attachmentSysId;
+
+		return attachmentUrl;
+	}	
+	
+  // Generate an HTML anchor tag with the sys_id as the href
+  var anchorTag = generateAnchorTag(attachmentSysId);
+
+  // Append the anchor tag to the document body or any other desired element
+  document.body.appendChild(anchorTag);
+
+  // Function to get the sys_id of the first attachment for a record
+  function getFirstAttachmentSysId(recordSysId) {
+    // Customize this part based on your ServiceNow environment and APIs
+    // This is a placeholder, and you need to replace it with actual ServiceNow API calls
+    // Example: You might use GlideRecord or GlideAjax to fetch attachments
+    // For simplicity, assuming you have a function 'getAttachmentsForRecord' that returns an array of attachments
+    var attachments = getAttachmentsForRecord(recordSysId);
+
+    if (attachments.length > 0) {
+      return attachments[0].sys_id;
+    }
+
+    return null;
+  }
+	
+	// Function to generate an HTML anchor tag
+	function generateAnchorTag(sysId) {
+		// Get the current URL
+		var currentUrl = window.location.href;
+		// Extract the instance name from the URL
+		var instanceName = getInstanceName(currentUrl);
+
+		var anchorTag = document.createElement('a');
+		anchorTag.href =  instanceName + '/sys_attachment.do?sys_id=' + sysId;
+		anchorTag.textContent = 'Invoice: ' + attachmentFileName;
+		return anchorTag;
+	}
+
+	// Get the list of signer email addresses based on the conditions
+	var signerEmails = getSignerEmails(currentRecordName);
+	
+	// Function to get the list of signer email addresses based on conditions
+	function getSignerEmails(currentRecordName) {
+		// Create a new GlideRecord for x_adosy_as_agreement
+		var agreementGR = new GlideRecord('x_adosy_as_agreement');
+
+		// Set conditions for the query
+		agreementGR.addQuery('status', 'Signed');
+		agreementGR.addQuery('state', 'Complete');
+		agreementGR.addQuery('name', 'LIKE', '%' + currentRecordName + '%'); // Match the name-column value
+
+		// Execute the query
+		agreementGR.query();
+
+		// Array to store signer email addresses
+		var arrSignerEmails = [];
+
+		// Iterate through the results and populate the signerEmails array
+		while (agreementGR.next()) {
+			arrSignerEmails.push(agreementGR.getValue('signers'));
+		}
+
+		// Return the list of signer email addresses
+		return arrSignerEmails;
+	}
+	
+  // Display signer emails in the container
+  displaySignerEmails(signerEmails);
+	
+  // Function to display signer emails in the container
+  function displaySignerEmails(signerEmails) {
+    // Get the container element
+    var container = document.getElementById('signerEmailsContainer');
+
+    // Check if there are signer emails to display
+    if (signerEmails.length > 0) {
+      // Create an unordered list element
+      var list = document.createElement('ul');
+
+      // Iterate through signer emails and create list items
+      signerEmails.forEach(function(email) {
+        var listItem = document.createElement('li');
+        listItem.textContent = email;
+        list.appendChild(listItem);
+      });
+
+      // Append the list to the container
+      container.appendChild(list);
+    } else {
+      // Display a message if there are no signer emails
+      var message = document.createElement('p');
+      message.textContent = 'No signer emails available.';
+      container.appendChild(message);
+    }
+  }	
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.bit-procurement-widget {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.widget-title {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.attachment-list {
+  margin-top: 20px;
+}
+
+.attachment-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.attachment-name {
+  flex-grow: 1;
+}
+
+.attachment-actions a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #0073e6;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>A pop-up that precedes passing data to Adobe Sign for puting a stamp on the attached invoice.</description>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>bit_procurement_invoice_stamp</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>BIT Procurement Invoice Stamp</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sfarkas</sys_created_by>
+        <sys_created_on>2023-11-17 18:25:11</sys_created_on>
+        <sys_id>2bf967791b6eb150baac766e034bcbdd</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>BIT Procurement Invoice Stamp</sys_name>
+        <sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope>
+        <sys_update_name>sp_widget_2bf967791b6eb150baac766e034bcbdd</sys_update_name>
+        <sys_updated_by>sfarkas</sys_updated_by>
+        <sys_updated_on>2023-11-17 20:59:53</sys_updated_on>
+        <template><![CDATA[<div class="bit-procurement-widget">
+  <h2 class="widget-title">BIT Procurement Invoice Approval Stamp (Adobe Acrobat Sign)</h2>
+
+  <!-- Text Box -->
+  <div class="form-group">
+    <label for="post-submit-link">Post-submit Link (unlikely to change)</label>
+    <input type="text" id="post-submit-link" class="form-control" value="https://www.adobe.com">
+  </div>
+
+  <!-- Text Box -->
+  <div class="form-group">
+    <label for="chosenDate">Enter a stamped-on date:</label>
+    <input type="text" id="chosenDate" class="form-control" placeholder="m/d/yyyy" >
+  </div>
+  
+  <!-- Text Box -->
+  <div class="form-group">
+    <label for="chosenPeriod">Period</label>
+    <input type="text" id="chosenPeriod" class="form-control" placeholder="date associated with the invoice">
+  </div>
+  
+  <!-- Yes/No Choice -->
+  <div class="form-group">
+    <label for="post-submit-redirect">Post-submit Redirect (expect 'yes')</label>
+    <select id="post-submit-redirect" class="form-control">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <!-- Default Attachment Listing -->
+  <div class="attachment-list">
+    <p><u>Attachment to the current BIT Procurement Approval Memo</u></p>
+    <!-- You can dynamically populate this section based 
+					on the attachments -->
+    <!-- For demonstration purposes, I'm adding a sample 
+				attachment -->
+    <div class="attachment-item">
+      <span class="attachment-name">Sample Attachment.pdf</span>
+    </div>
+  </div>
+  
+  <p>
+    <u>Signators of the approval memo:</u>
+  </p>
+  <div id="signerEmailsContainer"></div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

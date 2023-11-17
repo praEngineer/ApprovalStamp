@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_user_criteria_no_mtom">
+    <sc_cat_item_user_criteria_no_mtom action="INSERT_OR_UPDATE">
+        <sc_cat_item display_value="Adobe -- Stamp an Invoice">f3a65fb11b2eb150baac766e034bcb26</sc_cat_item>
+        <sys_class_name>sc_cat_item_user_criteria_no_mtom</sys_class_name>
+        <sys_created_by>sfarkas</sys_created_by>
+        <sys_created_on>2023-11-17 17:03:11</sys_created_on>
+        <sys_id>1637dbf11b2eb150baac766e034bcbb3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Adobe -- Stamp an Invoice.SNC External</sys_name>
+        <sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope>
+        <sys_update_name>sc_cat_item_user_criteria_no_mtom_1637dbf11b2eb150baac766e034bcbb3</sys_update_name>
+        <sys_updated_by>sfarkas</sys_updated_by>
+        <sys_updated_on>2023-11-17 17:03:11</sys_updated_on>
+        <user_criteria display_value="SNC External">66c1b50e730333009508738234f6a7c9</user_criteria>
+    </sc_cat_item_user_criteria_no_mtom>
+</record_update>

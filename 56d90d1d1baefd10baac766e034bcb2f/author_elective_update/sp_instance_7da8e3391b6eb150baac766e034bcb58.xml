@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">3a2867391b6eb150baac766e034bcb84</sp_column>
+        <sp_widget display_value="Test Context">07087c30ff223100ba13ffffffffff08</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>sfarkas</sys_created_by>
+        <sys_created_on>2023-11-17 18:19:21</sys_created_on>
+        <sys_id>7da8e3391b6eb150baac766e034bcb58</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope>
+        <sys_update_name>sp_instance_7da8e3391b6eb150baac766e034bcb58</sys_update_name>
+        <sys_updated_by>sfarkas</sys_updated_by>
+        <sys_updated_on>2023-11-17 18:19:21</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=7da8e3391b6eb150baac766e034bcb58"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</application>
+        <file_path/>
+        <instance_id>d1068f71dbe79b08439ef70fbf96194a</instance_id>
+        <instance_name>nycdsdev1</instance_name>
+        <name>sp_instance_7da8e3391b6eb150baac766e034bcb58</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance"><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>1</order><roles/><short_description/><size>md</size><sp_column display_value="1">3a2867391b6eb150baac766e034bcb84</sp_column><sp_widget display_value="Test Context">07087c30ff223100ba13ffffffffff08</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>sfarkas</sys_created_by><sys_created_on>2023-11-17 18:19:21</sys_created_on><sys_id>7da8e3391b6eb150baac766e034bcb58</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package><sys_policy/><sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope><sys_update_name>sp_instance_7da8e3391b6eb150baac766e034bcb58</sys_update_name><sys_updated_by>sfarkas</sys_updated_by><sys_updated_on>2023-11-17 18:19:21</sys_updated_on><title/><url/><widget_parameters/></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=7da8e3391b6eb150baac766e034bcb58"/></record_update>]]></payload>
+        <payload_hash>-196161045</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>1ed90d1d1baefd10baac766e034bcb34</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>sfarkas</sys_created_by>
+        <sys_created_on>2023-11-17 18:19:21</sys_created_on>
+        <sys_id>caa8e3391b6eb150baac766e034bcb5b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18bde8246600000001</sys_recorded_at>
+        <sys_updated_by>sfarkas</sys_updated_by>
+        <sys_updated_on>2023-11-17 18:19:21</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>cea8e339dc6eb1504dbeba1ff6601a5a</update_guid>
+        <update_guid_history>cea8e339dc6eb1504dbeba1ff6601a5a:-196161045</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Record deleted 2023-11-17 13:19:31">98b863791b6eb150baac766e034bcb5f</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>sfarkas</sys_created_by>
+        <sys_created_on>2023-11-17 18:19:31</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>6cffa4799686439a84b0e5ab803afe84</sys_id>
+        <sys_metadata>7da8e3391b6eb150baac766e034bcb58</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="ApprovalMemoWithStamp" source="x_dosny_approvalme">56d90d1d1baefd10baac766e034bcb2f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="ApprovalMemoWithStamp">56d90d1d1baefd10baac766e034bcb2f</sys_scope>
+        <sys_scope_delete display_value="">075df3208d604588896ba0790db323c4</sys_scope_delete>
+        <sys_update_name>sp_instance_7da8e3391b6eb150baac766e034bcb58</sys_update_name>
+        <sys_update_version display_value="sp_instance_7da8e3391b6eb150baac766e034bcb58">caa8e3391b6eb150baac766e034bcb5b</sys_update_version>
+        <sys_updated_by>sfarkas</sys_updated_by>
+        <sys_updated_on>2023-11-17 18:19:31</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
